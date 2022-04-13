@@ -117,7 +117,24 @@ function buildQuiz() {
     questionOne.textContent = questions.questionOne;
     questionOne.className = "";
     quizContainer.append(questionOne);
-    var keys = Object.keys(questions.questionOneAnswers);
-    console.log(keys);
-    keys.forEach((key,index) => {console.log(`${key}: ${questions.questionOneAnswers[key]}`)})
+
+    var q1a1 = document.createElement("li");
+    q1a1.textContent = questions.questionOneAnswers.a;
+    q1a1.className = "";
+    questionOne.append(q1a1);
+    var q1a2 = document.createElement("li");
+    q1a2.textContent = questions.questionOneAnswers.b;
+    q1a2.className = "";
+    questionOne.append(q1a2);
+    var q1a3 = document.createElement("li");
+    q1a3.textContent = questions.questionOneAnswers.c;
+    q1a3.className = "";
+    questionOne.append(q1a3);
+    var q1a4 = document.createElement("li");
+    q1a4.textContent = questions.questionOneAnswers.d;
+    q1a4.className = "";
+    questionOne.append(q1a4);
+
+    //var q1a = Object.keys(questions.questionOneAnswers);
+    //q1a.forEach((key,index) => {console.log(`${key}: ${questions.questionOneAnswers[key]}`)})
 }

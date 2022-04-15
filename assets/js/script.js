@@ -5,6 +5,7 @@ var timerEl = document.getElementById("timer");
 var quizHeading = document.querySelector(".quiz-heading");
 var quizDes = document.querySelector(".quiz-description");
 
+var timeLeft = 180;
 var questions = {
 
     // get question and answer ex: questions.questionOneAnswers.a
@@ -18,8 +19,8 @@ var questions = {
     },
     questionTwo: "How do you declare an object?",
     questionTwoAnswers: {
-        a: "var obj = {}",
-        b: "var object = {}",
+        a: "var object = {}",
+        b: "var obj = {}",
         c: "var obj = []",
         d: "var object = []"
     },
@@ -74,8 +75,8 @@ var questions = {
     },
     questionTen: "Which of these sets the attribute of, 'name', with the variable, ID?",
     questionTenAnswers: {
-        a: "element.setAttribute('name', ID)",
-        b: "element.setAttribute = ('name', ID)",
+        a: "element.setAttribute = ('name', ID)",
+        b: "element.setAttribute('name', ID)",
         c: "element.setAttribute = (name, 'ID')",
         d: "element.setAttribute(ID, name)"
     }
@@ -89,8 +90,6 @@ startEl.addEventListener("click", function(){
 
 // TIMER FUNCTION
 function countdown() {
-    var timeLeft = 180;
-  
     var timeInterval = setInterval(function () {
       if (timeLeft > 1) {
         timerEl.textContent = timeLeft + 's';
@@ -116,25 +115,42 @@ function buildQuiz() {
     var questionOne = document.createElement("ul");
     questionOne.textContent = questions.questionOne;
     questionOne.className = "";
-    quizContainer.append(questionOne);
+    quizContainer.appendChild(questionOne);
 
     var q1a1 = document.createElement("li");
     q1a1.textContent = questions.questionOneAnswers.a;
-    q1a1.className = "";
-    questionOne.append(q1a1);
+    q1a1.className = "answers";
+    q1a1.setAttribute("option", "a");
+    questionOne.appendChild(q1a1);
     var q1a2 = document.createElement("li");
     q1a2.textContent = questions.questionOneAnswers.b;
-    q1a2.className = "";
-    questionOne.append(q1a2);
+    q1a2.className = "answers";
+    q1a2.setAttribute("option", "b");
+    questionOne.appendChild(q1a2);
     var q1a3 = document.createElement("li");
     q1a3.textContent = questions.questionOneAnswers.c;
-    q1a3.className = "";
-    questionOne.append(q1a3);
+    q1a3.className = "answers";
+    q1a3.setAttribute("option", "c");
+    questionOne.appendChild(q1a3);
     var q1a4 = document.createElement("li");
     q1a4.textContent = questions.questionOneAnswers.d;
-    q1a4.className = "";
-    questionOne.append(q1a4);
-
+    q1a4.className = "answers";
+    q1a4.setAttribute("option", "d");
+    questionOne.appendChild(q1a4);
     //var q1a = Object.keys(questions.questionOneAnswers);
     //q1a.forEach((key,index) => {console.log(`${key}: ${questions.questionOneAnswers[key]}`)})
+
+    var answers = document.querySelectorAll(".answers");
+    answers.forEach(element => {
+        element.addEventListener("click", function(event) {
+            var option = this.getAttribute("option");
+            if (option === "d") {
+                console.log("correct");
+            }
+            else {
+                console.log("wrong");
+            }
+        })
+    });
+
 }

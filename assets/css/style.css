@@ -40,4 +40,11 @@ main {
     padding: 2px;
     font-size: 20px;
     background-color: red;
-}   
+}  
+
+/*QUESTION AND ANSWER STYLING*/
+
+.answers {
+    padding: 2px;
+    margin: 1px;
+}

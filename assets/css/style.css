@@ -43,8 +43,19 @@ main {
 }  
 
 /*QUESTION AND ANSWER STYLING*/
+.question {
+    padding: 5px;
+    font-weight: bold;
+}
 
 .answers {
-    padding: 2px;
-    margin: 1px;
+    list-style: none;
+    font-weight: normal;
+    padding: 5px;
+    margin: 10px;
+}
+
+.answer-result {
+    padding: 5px;
+    margin: 5px;
 }

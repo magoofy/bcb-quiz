@@ -56,23 +56,23 @@ var questions = {
     },
     questionSeven: "7. Which is the correct way to add an event listener",
     questionSevenAnswers: {
-        a: "event.addEventListener('click', function())",
-        b: "event = addEventListener('click', function())",
+        a: "var.addEventListener('click', function())",
+        b: "var = addEventListener('click', function())",
         c: "on.click = addEventListner(function())",
         d: "addEventListener.onClick(function())"
     },
-    questionEight: "8. How do you append a child?",
+    questionEight: "8. How do you append an element?",
     questionEightAnswers: {
-        a: "appenChild(child).parent",
-        b: "append(child).parent",
-        c: "parent.childAppend(child)",
-        d: "parent.appendChild(child)"
+        a: "appendChild(childEl).parent",
+        b: "append(childEl).parent",
+        c: "parentEl.childAppend(childEl)",
+        d: "parentEl.appendChild(childEl)"
     },
-    questionNine: "9. How do you add html onto an element?",
+    questionNine: "9. Which is the correct way to use 'textContent'?",
     questionNineAnswers: {
         a: "element.textContent('text')",
-        b: "element.content = 'text'",
-        c: "addContent.element('text')",
+        b: "element.textContent = 'text'",
+        c: "textContent.element('text')",
         d: "element.textContent = ('text')"
     },
     questionTen: "10. Which of these sets the attribute of, 'name', with the variable, ID?",
@@ -527,7 +527,7 @@ function qNine() {
     answers.forEach(element => {
         element.addEventListener("click", function(event) {
             var option = this.getAttribute("option");
-            if (option === "a") {
+            if (option === "b") {
                 displayCorrect();
                 qTen();
             }

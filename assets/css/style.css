@@ -59,3 +59,16 @@ main {
     padding: 5px;
     margin: 5px;
 }
+
+.score-board-h {
+    padding: 5px;
+    margin: 15px;
+    font-weight: bold;
+    border-bottom: 2px;
+}
+
+.score-board {
+    padding: 5px;
+    margin: 10px;
+    list-style: none;
+}

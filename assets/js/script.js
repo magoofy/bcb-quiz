@@ -93,14 +93,14 @@ startEl.addEventListener("click", function(){
 // TIMER FUNCTION
 function countdown() {
     var timeInterval = setInterval(function () {
-      if (timeLeft > 1) {
+    if (timeLeft > 1) {
         timerEl.textContent = timeLeft + 's';
         timeLeft--;
         } 
     else {
         timerEl.textContent = '';
         clearInterval(timeInterval);
-        // DISPLAY SCORE PAGE
+        scorePage();
         }
     }, 1000);
 }
@@ -575,15 +575,55 @@ function qTen() {
             var option = this.getAttribute("option");
             if (option === "b") {
                 displayCorrect();
-                //score page
+                scorePage();
             }
             else {
                 displayWrong();
                 timeLeft = timeLeft - 15;
-                //score page
+                scorePage();
             }
         })
     });
 }
 
+function scorePage() {
+    quizContainer.textContent = "";
+    timerEl.textContent = "";
 
+    var score = timeLeft;
+    localStorage.setItem("score", score);
+    
+    var name = ""
+    while (name === "" || name === "null") {
+    var name = prompt("Enter your name:");
+    }
+    localStorage.setItem("name", name);
+    
+    var highScoreName = localStorage.getItem("highScoreName");
+    var storagedHighScore = localStorage.getItem("highscore");
+
+    // If no high score is present
+    if (storagedHighScore === null) {
+        storagedHighScore = 0;
+        highScoreName = "";
+    }
+    // If current score beats high score
+    if (score > parseInt(storagedHighScore)) {
+        localStorage.setItem("highscore", score);
+        localStorage.setItem("highScoreName", name);
+    }
+
+    var scoreBoardH = document.createElement("ul");
+    scoreBoardH.textContent = "Score Board:";
+    scoreBoardH.className = "score-board-h";
+    quizContainer.appendChild(scoreBoardH);
+
+    var highScoreBoard = document.createElement("li")
+    highScoreBoard.textContent = highScoreName + ": " + storagedHighScore;
+    highScoreBoard.className = "score-board";
+    scoreBoardH.appendChild(highScoreBoard);   
+    var scoreBoard = document.createElement("li")
+    scoreBoard.textContent = name + ": " + score;
+    scoreBoard.className = "score-board";
+    scoreBoardH.appendChild(scoreBoard);   
+}

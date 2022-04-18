@@ -1,4 +1,4 @@
-<img src="./assets/images/quiz-sc.jpg" alt="homepage of the website" />
+<img src="./assets/images/bcbquiz.jpg" alt="homepage of the website" />
 
 # BCB Quiz
 

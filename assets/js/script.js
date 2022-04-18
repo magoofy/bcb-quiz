@@ -6,8 +6,10 @@ var timerEl = document.getElementById("timer");
 var quizHeading = document.querySelector(".quiz-heading");
 var quizDes = document.querySelector(".quiz-description");
 var answerResultEl = document.querySelector("#answer-result");
-
 var timeLeft = 180;
+var timeInterval;
+var namesArr = [];
+var scoresArr = [];
 var questions = {
 
     // get question and answer ex: questions.questionOneAnswers.a
@@ -92,7 +94,7 @@ startEl.addEventListener("click", function(){
 
 // TIMER FUNCTION
 function countdown() {
-    var timeInterval = setInterval(function () {
+    timeInterval = setInterval(function() {
     if (timeLeft > 1) {
         timerEl.textContent = timeLeft + 's';
         timeLeft--;
@@ -103,6 +105,7 @@ function countdown() {
         scorePage();
         }
     }, 1000);
+
 }
 
 // DISPLAY ANSWER RESULT
@@ -586,13 +589,16 @@ function qTen() {
     });
 }
 
+// SCORE PAGE
 function scorePage() {
+    clearInterval(timeInterval);
+
     quizContainer.textContent = "";
     timerEl.textContent = "";
 
     var score = timeLeft;
     localStorage.setItem("score", score);
-    
+
     var name = ""
     while (name === "" || name === "null") {
     var name = prompt("Enter your name:");
@@ -614,16 +620,35 @@ function scorePage() {
     }
 
     var scoreBoardH = document.createElement("ul");
-    scoreBoardH.textContent = "Score Board:";
+    scoreBoardH.textContent = "High Score:";
     scoreBoardH.className = "score-board-h";
     quizContainer.appendChild(scoreBoardH);
 
+    if (highScoreName != "" && storagedHighScore != 0) {
     var highScoreBoard = document.createElement("li")
     highScoreBoard.textContent = highScoreName + ": " + storagedHighScore;
     highScoreBoard.className = "score-board";
-    scoreBoardH.appendChild(highScoreBoard);   
-    var scoreBoard = document.createElement("li")
-    scoreBoard.textContent = name + ": " + score;
-    scoreBoard.className = "score-board";
-    scoreBoardH.appendChild(scoreBoard);   
+    scoreBoardH.appendChild(highScoreBoard);
+    }   
+
+    namesArr.push(name);
+    localStorage.setItem("names", JSON.stringify(namesArr));
+    scoresArr.push(score);
+    localStorage.setItem("scores", JSON.stringify(scoresArr))
+    
+    function displayAllScores() {
+        for (i=0; i <= localStorage.length-6; i++){
+            var scoreBoardH = document.createElement("ul");
+            scoreBoardH.textContent = "Your Score:";
+            scoreBoardH.className = "score-board-h";
+            quizContainer.appendChild(scoreBoardH);
+
+            var scoreBoard = document.createElement("li")
+            scoreBoard.textContent = JSON.parse(localStorage.getItem("names")) + ": "
+                + JSON.parse(localStorage.getItem("scores"));
+            scoreBoard.className = "score-board";
+            scoreBoardH.appendChild(scoreBoard);
+            }
+        }
+    displayAllScores()
 }
